@@ -2,12 +2,16 @@
 // credits @sinontop | Channel: @mksln
 
 // requirements
+import dotenv from 'dotenv';
+dotenv.config();
+
+import express from 'express';
+import fetch from 'node-fetch';
+ 
 require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
-const fetch = require('node-fetch');
 const deepEqual = require('deep-equal');
-const express = require('express');
 const TelegramBot = require('node-telegram-bot-api');
 
 // config
