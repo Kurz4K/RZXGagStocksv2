@@ -134,15 +134,15 @@ app.get("/api/v1/stocks", async (req, res) => {
       name: label,
       last_updated: now.toISOString(),
       countdown: {
-        formatted: "00h 00m 00s",
+        formatted: "00h 00m 00s",  // ✅ This must exist and be a string
         hours: 0,
         minutes: 0,
         seconds: 0,
-        total_seconds: 0,
+        total_seconds: 0
       },
       items: data[key]?.map(item => ({
         name: item.name,
-        quantity: item.value // Convert "value" to "quantity"
+        quantity: item.value
       })) || []
     });
 
