@@ -1,0 +1,77 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grow A Garden Stock Tracker</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        .add-bot-button-container {
+            /* text */
+            text-align: center;
+            margin: 20px 0;
+        }
+        .add-bot-button {
+            /* display */
+            display: inline-block;
+            padding: 10px 20px;
+            /* font */
+            font-size: 1em;
+            font-weight: bold;
+            /* color */
+            color: white;
+            /* background */
+            background: linear-gradient(to right, #833ab4, #fd1d1d, #fcb045);
+            /* border */
+            border: none;
+            border-radius: 8px;
+            /* text */
+            text-decoration: none;
+            /* cursor */
+            cursor: pointer;
+            /* transition */
+            transition: opacity 0.3s ease;
+        }
+        .add-bot-button:hover {
+            opacity: 0.85;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <a href="/bot-admin" class="admin-link-header" title="Admin Bot Management" style="font-size:0.8em; color: #aaa; text-decoration: none;"></a>
+        </div>
+        <h1>Stock Tracker</h1>
+        <div class="icons">
+            <span id="refresh-button" title="Refresh">↻</span>
+        </div>
+    </div>
+
+    <div class="add-bot-button-container">
+        <a href="/add-my-bot" class="add-bot-button">🔔 Add Your Bot for Notifications</a>
+    </div>
+
+    <div class="nav-tabs" id="nav-tabs-container">
+        <button class="active" data-category="all">All Stock</button>
+    </div>
+
+    <div class="auto-refresh-banner">
+        <span class="dot"></span>Auto-Refresh
+    </div>
+
+    <div class="stock-container" id="stock-container">
+        <div class="loading">Loading stock data...</div>
+    </div>
+
+    <script src="/script.js"></script>
+    <!-- Credits: @sinontop | Channel: @mksln -->
+
+    <div id="weather" class="weather-box">
+        <h2>Current Weather</h2>
+        <ul id="weather-list"><li>Loading...</li></ul>
+    </div>
+
+</body>
+</html>

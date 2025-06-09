@@ -1,0 +1,249 @@
+<!-- public/add-my-bot.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Your Bot - Grow AGardenn</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        body.user-page {
+            /* background */
+            background: linear-gradient(135deg, #1e133a 0%, #3a1e6f 40%, #52298f 100%);
+            padding: 20px;
+            /* color */
+            color: #e8e0ff;
+        }
+        .user-container {
+            /* background */
+            background-color: rgba(45, 28, 80, 0.88);
+            /* filter */
+            backdrop-filter: blur(7px);
+            padding: 25px 30px;
+            /* border */
+            border-radius: 15px;
+            margin: 40px auto;
+            max-width: 550px;
+            /* shadow */
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+        .user-container h1 {
+            /* text */
+            text-align: center;
+            /* color */
+            color: #f5f0ff;
+            margin-bottom: 15px;
+            /* font */
+            font-size: 1.7em;
+        }
+        .user-container .subtitle {
+            /* text */
+            text-align: center;
+            /* color */
+            color: #d8ccff;
+            margin-bottom: 25px;
+            /* font */
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        .form-group label {
+            /* display */
+            display: block;
+            margin-bottom: 7px;
+            /* font */
+            font-weight: 500;
+            /* color */
+            color: #d8ccff;
+        }
+        .form-group input[type="text"],
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            /* border */
+            border: 1px solid rgba(164, 80, 215, 0.4);
+            border-radius: 7px;
+            /* background */
+            background-color: rgba(26, 12, 51, 0.6);
+            /* color */
+            color: #f0e6ff;
+            /* font */
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+        .form-group textarea {
+            min-height: 70px;
+            resize: vertical;
+        }
+        .form-group input[type="text"]:focus,
+        .form-group textarea:focus {
+            /* outline */
+            outline: none;
+            /* border */
+            border-color: #e0aaff;
+            /* shadow */
+            box-shadow: 0 0 0 3px rgba(224, 170, 255, 0.15);
+        }
+        .user-container button[type="submit"] {
+            /* display */
+            display: block;
+            width: 100%;
+            padding: 11px 15px;
+            /* background */
+            background: linear-gradient(to right, #833ab4, #fd1d1d, #fcb045);
+            /* color */
+            color: white;
+            /* border */
+            border: none;
+            border-radius: 8px;
+            /* font */
+            font-size: 1.05em;
+            font-weight: bold;
+            /* cursor */
+            cursor: pointer;
+            /* transition */
+            transition: opacity 0.3s ease;
+            margin-top: 10px;
+        }
+        .user-container button[type="submit"]:hover {
+            opacity: 0.85;
+        }
+        .message {
+            /* text */
+            text-align: center;
+            padding: 10px;
+            /* border */
+            border-radius: 5px;
+            margin-top: 15px;
+            font-weight: 500;
+        }
+        .message.success {
+            /* background */
+            background-color: rgba(76, 175, 80, 0.25);
+            /* color */
+            color: #b3ffb6;
+            /* border */
+            border: 1px solid rgba(76, 175, 80, 0.4);
+        }
+        .message.error {
+            /* background */
+            background-color: rgba(244, 67, 54, 0.25);
+            /* color */
+            color: #ffb3b3;
+            /* border */
+            border: 1px solid rgba(244, 67, 54, 0.4);
+        }
+        .footer-note {
+            /* text */
+            text-align: center;
+            /* font */
+            font-size: 0.8em;
+            /* color */
+            color: #b0aacc;
+            margin-top: 30px;
+        }
+         .nav-links-user { /* Specific for user page for simpler navigation */
+            /* text */
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .nav-links-user a {
+            /* color */
+            color: #d0bfff;
+            /* text */
+            text-decoration: none;
+            /* font */
+            font-weight: 500;
+        }
+        .nav-links-user a:hover {
+            /* text */
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body class="user-page">
+    <div class="user-container">
+        <div class="nav-links-user">
+            <a href="/">« Back to Stock Tracker</a>
+        </div>
+        <h1>Add Your Bot for Stock Notifications</h1>
+        <p class="subtitle">
+            Provide your Telegram Bot Token and Channel ID(s) to receive Grow A Garden stock updates directly via your bot.
+            <br><strong>Important:</strong> Your bot token will be stored on our server. Ensure you trust this service.
+        </p>
+        <form id="userBotForm">
+            <div class="form-group">
+                <label for="userBotId">Your Bot Identifier (e.g., my_updates_bot - must be unique):</label>
+                <input type="text" id="userBotId" name="userBotId" placeholder="Make this ID unique" required>
+            </div>
+            <div class="form-group">
+                <label for="userBotToken">Your Telegram Bot Token:</label>
+                <input type="text" id="userBotToken" name="userBotToken" placeholder="123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11" required>
+            </div>
+            <div class="form-group">
+                <label for="userChannelIds">Your Channel ID(s) (comma-separated, e.g., -100xxxxxxxx):</label>
+                <textarea id="userChannelIds" name="userChannelIds" placeholder="-100123456789, -100987654321" required></textarea>
+            </div>
+            <button type="submit">Add My Bot</button>
+        </form>
+        <div id="userResponseMessage" class="message" style="display: none;"></div>
+        <p class="footer-note">
+            This service is provided by @sinontop | Channel: @mksln.
+        </p>
+    </div>
+
+    <script>
+        // credits @sinontop | Channel: @mksln
+        const userBotForm = document.getElementById('userBotForm');
+        const userResponseMessage = document.getElementById('userResponseMessage');
+
+        function showUserMessage(message, isError = false) {
+            userResponseMessage.textContent = message;
+            userResponseMessage.className = 'message';
+            userResponseMessage.classList.add(isError ? 'error' : 'success');
+            userResponseMessage.style.display = 'block';
+            setTimeout(() => { userResponseMessage.style.display = 'none'; }, 7000);
+        }
+
+        userBotForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const formData = new FormData(userBotForm);
+            const data = {
+                id: formData.get('userBotId').trim(),
+                token: formData.get('userBotToken').trim(),
+                channelIds: formData.get('userChannelIds').split(',').map(id => id.trim()).filter(id => id),
+                enabled: true
+            };
+
+            if (!data.id || !data.token || data.channelIds.length === 0) {
+                showUserMessage('ID, Token, and Channel IDs are required.', true); return;
+            }
+            if (!/^\d+:[A-Za-z0-9_-]+$/.test(data.token)) {
+                showUserMessage('Invalid Bot Token format.', true); return;
+            }
+            for (const chId of data.channelIds) {
+                if (!/^-100\d+$/.test(chId)) {
+                    showUserMessage(`Invalid Channel ID: ${chId}. Must start with -100.`, true); return;
+                }
+            }
+
+            try {
+                const response = await fetch('/api/bot-configs', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data),
+                });
+                const result = await response.json();
+                if (!response.ok) throw new Error(result.message || `Server error: ${response.status}`);
+                showUserMessage(result.message || 'Bot submitted successfully!');
+                userBotForm.reset();
+            } catch (error) {
+                console.error('Submit user bot error:', error);
+                showUserMessage(error.message || 'Error submitting. Try again.', true);
+            }
+        });
+    </script>
+</body>
+</html>
