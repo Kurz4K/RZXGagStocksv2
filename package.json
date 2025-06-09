@@ -1,4 +1,5 @@
 {
+    "type": "module" 
     "name": "grow-a-garden-stock-tracker",
     "version": "1.0.0",
     "description": "Grow A Garden Stock Tracker, API & Telegram Bot. Credits: @sinontop | Channel: @mksln",
@@ -16,7 +17,7 @@
         "telegram",
         "bot"
     ],
-    "author": "@sinontop",
+    "author": "@Kurz",
     "license": "ISC",
     "dependencies": {
         "express": "^4.18.2",
