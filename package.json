@@ -1,0 +1,28 @@
+{
+    "name": "grow-a-garden-stock-tracker",
+    "version": "1.0.0",
+    "description": "Grow A Garden Stock Tracker, API & Telegram Bot. Credits: @sinontop | Channel: @mksln",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "keywords": [
+        "roblox",
+        "grow-a-garden",
+        "stock",
+        "tracker",
+        "web",
+        "api",
+        "telegram",
+        "bot"
+    ],
+    "author": "@sinontop",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.18.2",
+        "node-telegram-bot-api": "^0.61.0",
+        "node-fetch": "^2.6.7",
+        "dotenv": "^16.0.3",
+        "deep-equal": "^2.2.0"
+    }
+}
