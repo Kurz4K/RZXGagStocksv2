@@ -124,45 +124,46 @@ app.get('/api/v1/stock', async (req, res) => {
         res.json(await r.json());
     } catch (e) { console.error('API Proxy error:', e); res.status(500).json({ error: 'Proxy Internal Server Error.' }); }
 });
-app.get("/api/v1/stocks", async (req, res) => {
-  try {
-    const response = await fetch(process.env.STOCK_API_URL);
-    const data = await response.json();
-    const now = new Date();
+const response = await fetch(process.env.STOCK_API_URL);
+const data = await response.json();
 
-    const formatSection = (key, label) => ({
-      name: label,
-      last_updated: now.toISOString(),
-      countdown: {
-        formatted: "00h 00m 00s",  // ✅ This must exist and be a string
-        hours: 0,
-        minutes: 0,
-        seconds: 0,
-        total_seconds: 0
-      },
-      items: data[key]?.map(item => ({
-        name: item.name,
-        quantity: item.value
-      })) || []
-    });
+console.log("📦 Raw stock API data:", JSON.stringify(data, null, 2));
 
-    const formatted = {
-      cosmetics_stock: formatSection("cosmetic", "COSMETICS STOCK"),
-      egg_stock: formatSection("egg", "EGG STOCK"),
-      gear_stock: formatSection("gear", "GEAR STOCK"),
-      honey_stock: formatSection("honey", "HONEY STOCK"),
-      seeds_stock: formatSection("seed", "SEEDS STOCK"),
-      night_stock: formatSection("night", "NIGHT STOCK"),
-      easter_stock: formatSection("easter", "EASTER STOCK")
-    };
+const now = new Date();
 
-    res.json(formatted);
+const formatSection = (key, label) => {
+  const sectionData = data[key] || [];
 
-  } catch (err) {
-    console.error("Failed to load stock:", err);
-    res.status(500).json({ error: "Failed to fetch stock data" });
-  }
-});
+  return {
+    name: label,
+    last_updated: now.toISOString(),
+    countdown: {
+      formatted: "00h 00m 00s", // ✅ Required by frontend
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
+      total_seconds: 0
+    },
+    items: sectionData.map(item => ({
+      name: item.name,
+      quantity: item.value // Map "value" to "quantity"
+    }))
+  };
+};
+
+const formatted = {
+  cosmetics_stock: formatSection("cosmetic", "COSMETICS STOCK"),
+  egg_stock: formatSection("egg", "EGG STOCK"),
+  gear_stock: formatSection("gear", "GEAR STOCK"),
+  honey_stock: formatSection("honey", "HONEY STOCK"),
+  seeds_stock: formatSection("seed", "SEEDS STOCK"),
+  night_stock: formatSection("night", "NIGHT STOCK"),
+  easter_stock: formatSection("easter", "EASTER STOCK")
+};
+
+console.log("✅ Final formatted stock response:", JSON.stringify(formatted, null, 2));
+
+res.json(formatted);
 
 // api (get configs)
 app.get('/api/bot-configs', (req, res) => res.json(loadBotConfigurationsFromFile().map(c=>({id:c.id,token:c.token?`${c.token.substring(0,8)}...`:'N/A',channelIds:c.channelIds,enabled:c.enabled}))));
